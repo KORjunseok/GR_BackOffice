@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class guest extends Model {
+  class sitter extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  guest.init(
+  sitter.init(
     {
-      guestId: {
+      sitterId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -31,18 +31,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         onDelete: 'CASCADE',
       },
-      //  sitterId: {
-      //   allowNull: false,
-      //   type: DataTypes.INTEGER,
-      //   references: {
-      //     model: 'Sitters',
-      //     key: 'sitterId',
-      //   },
-      //   onDelete: 'CASCADE',
-      // career: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      // },
+
+      career: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -56,8 +49,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'guest',
+      modelName: 'sitter',
     }
   );
-  return guest;
+  return sitter;
 };

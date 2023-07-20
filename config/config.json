@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "shin",
-    "password": "1q2w3e4r",
+    "username": "root",
+    "password": "4321aaaa",
     "database": "BackOffice",
-    "host": "express-database1.cspuzwpyldcv.ap-northeast-2.rds.amazonaws.com",
+    "host": "express-database.c1xqmf5yittd.ap-northeast-2.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {

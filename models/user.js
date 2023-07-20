@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
+
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -40,9 +41,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      //  ENUM은 특정 값들 중에서만 선택할 수 있는 데이터 타입, 여기서 'guest'와 'sitter' 두 가지 역할만 가능하도록 설정되어 있으며, 기본 값은 'guest'로 설정
       role: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.ENUM('guest', 'sitter'),
+        defaultValue: 'guest',
       },
       phone: {
         type: DataTypes.STRING,
