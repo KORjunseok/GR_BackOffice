@@ -1,5 +1,4 @@
 const { User } = require('../models');
-const { sitter } = require('../models');
 
 class UserRepository {
   async create(user) {

@@ -18,7 +18,6 @@ class UserController {
         phone
       );
       console.log('Look here:', signup);
-
       res.status(200).json('회원가입이 완료되었습니다.');
     } catch (error) {
       console.error('Signup error:', error);
@@ -30,9 +29,8 @@ class UserController {
   loginUser = async (req, res) => {
     try {
       const { email, password } = req.body;
-
       const token = await this.userService.loginUser(email, password);
-      await res.cookie('authorization', `petsitter ${token}`);
+      await res.cookie('authorization', `Bearer ${token}`); // 토큰 수정
 
       return res.status(200).json({ message: '로그인이 완료되었습니다.' });
     } catch (error) {
@@ -42,25 +40,13 @@ class UserController {
   };
 
   // 회원정보 수정
-  updateUser = async (req, res, next) => {
+  updateUser = async (req, res) => {
     try {
       const { email, password, nickname, address, role, phone } = req.body;
       const { userId } = req.params;
+      await this.userService.updateUser(userId, email, password, nickname, address, role, phone);
 
-      // Call the updateUser method from the UserService to update the user information
-      await this.userService.updateUser(
-        userId,
-        email,
-        password,
-        nickname,
-        address,
-        role,
-        phone
-      );
-
-      return res
-        .status(200)
-        .json({ message: '회원정보 수정이 완료되었습니다.' });
+      return res.status(200).json({ message: '회원정보 수정이 완료되었습니다.' });
     } catch (error) {
       console.error('Update Error:', error);
       res.status(500).json({ errorMessage: '회원정보 수정이 실패했습니다.' });
@@ -73,9 +59,7 @@ class UserController {
       const { userId } = req.params;
       await this.userService.deleteUser(userId);
 
-      return res
-        .status(200)
-        .json({ message: '회원정보 삭제가 정상적으로 처리되었습니다.' });
+      return res.status(200).json({ message: '회원정보 삭제가 정상적으로 처리되었습니다.' });
     } catch (error) {
       console.error('Delete Error:', error);
       res.status(500).json({ errorMessage: '회원정보 삭제가 실패했습니다.' });

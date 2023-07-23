@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class comment extends Model {
+  class comments extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  comment.init(
+  comments.init(
     {
       commentId: {
         allowNull: false,
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
         references: {
-          model: 'User',
+          model: 'Users',
           key: 'userId',
         },
         onDelete: 'CASCADE',
@@ -53,8 +53,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'comment',
+      modelName: 'comments',
     }
   );
-  return comment;
+  return comments;
 };

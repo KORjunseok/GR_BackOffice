@@ -1,5 +1,4 @@
 const { guest } = require('../models');
-// const { User } = require('../models');
 
 class GuestRepository {
   async findByUserId(userId) {

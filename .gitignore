@@ -2,3 +2,4 @@ node_modules/
 config.js
 config.json
 
+# .env는 원래 .gitignore에 올려야 하지만 튜터 님 코드 확인하실 수 있으니 노출되게 하겠습니다.

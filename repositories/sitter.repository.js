@@ -1,5 +1,4 @@
 const { sitter } = require('../models');
-// const { User } = require('../models');
 
 class SitterRepository {
   async findByUserId(userId) {

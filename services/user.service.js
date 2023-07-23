@@ -39,13 +39,10 @@ class UserService {
   // 로그인
   loginUser = async (email, password) => {
     const user = await this.userRepository.findByEmail(email);
-
+    const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!user) {
       throw new Error('유효한 이메일이 아닙니다.');
     }
-
-    const passwordsMatch = await bcrypt.compare(password, user.password);
-
     if (!passwordsMatch) {
       throw new Error('유효한 증명이 아닙니다.');
     }
@@ -62,15 +59,7 @@ class UserService {
   };
 
   // 회원정보 수정
-  updateUser = async (
-    userId,
-    email,
-    password,
-    nickname,
-    address,
-    role,
-    phone
-  ) => {
+  updateUser = async (userId, email, password, nickname, address, role, phone) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await this.userRepository.update(userId, {
